@@ -39,7 +39,8 @@ export class Cards extends Core.APIResource {
    */
   embed(query?: CardEmbedParams | null | undefined, options?: Core.RequestOptions): Promise<string> {
     return this.get('/embed/card', {
-      ...{ query, ...options },
+      query,
+      ...options,
       headers: { Accept: 'text/html', ...options?.headers },
     });
   }
@@ -73,7 +74,7 @@ export interface Card {
    */
   created: string;
 
-  funding: Card.Funding;
+  funding: FundingSource;
 
   /**
    * Last four digits of the card number.

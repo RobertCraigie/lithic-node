@@ -76,7 +76,7 @@ export interface Transaction {
    */
   authorization_code?: string;
 
-  card?: Transaction.Card;
+  card?: Card;
 
   /**
    * Date and time when the transaction first occurred. UTC time zone.
@@ -158,7 +158,7 @@ export namespace Transaction {
      */
     created: string;
 
-    funding: Card.Funding;
+    funding: FundingSource;
 
     /**
      * Last four digits of the card number.
