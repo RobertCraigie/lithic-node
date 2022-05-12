@@ -7,4 +7,9 @@ describe('resource status', () => {
   test('retrieve', async () => {
     const response = await client.status.retrieve();
   });
+
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.status.retrieve({ method: 'FOO' as any })).rejects.toThrow(Lithic.BadRequestError);
+  });
 });

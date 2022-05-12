@@ -311,6 +311,30 @@ export type RequestOptions<Req extends {} = Record<string, unknown>> = {
   httpAgent?: Agent;
 };
 
+// This is required so that we can determine if a given object matches the RequestOptions
+// type at runtime. While this requires duplication, it is enforced by the TypeScript
+// compiler such that any missing / extraneous keys will cause an error.
+type KeysEnum<T> = { [P in keyof Required<T>]: true };
+const RequestOptionsKeys: KeysEnum<RequestOptions> = {
+  method: true,
+  path: true,
+  query: true,
+  body: true,
+  headers: true,
+
+  maxRetries: true,
+  timeout: true,
+  httpAgent: true,
+};
+
+export const isRequestOptions = (obj: unknown): obj is RequestOptions => {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    Object.keys(RequestOptionsKeys).some((k) => Object.hasOwn(obj, k))
+  );
+};
+
 export type FinalRequestOptions<Req extends {} = Record<string, unknown>> = RequestOptions<Req> & {
   method: HTTPMethod;
   path: string;

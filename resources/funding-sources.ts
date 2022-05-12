@@ -28,10 +28,20 @@ export class FundingSources extends Core.APIResource {
   /**
    * List all the funding sources associated with the Lithic account.
    */
+  list(query?: Core.RequestOptions): Core.APIListPromise<FundingSource>;
   list(
     query?: FundingSourceListParams | null | undefined,
     options?: Core.RequestOptions,
+  ): Core.APIListPromise<FundingSource>;
+  list(
+    query?: FundingSourceListParams | Core.RequestOptions | null | undefined,
+    options?: Core.RequestOptions,
   ): Core.APIListPromise<FundingSource> {
+    if (Core.isRequestOptions(query)) {
+      options = query;
+      query = null;
+    }
+
     return this.getAPIList('/funding_sources', { query, ...options });
   }
 

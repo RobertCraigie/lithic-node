@@ -25,10 +25,20 @@ export class Accounts extends Core.APIResource {
   /**
    * List account configurations.
    */
+  list(query?: Core.RequestOptions): Core.APIListPromise<Account>;
   list(
     query?: AccountListParams | null | undefined,
     options?: Core.RequestOptions,
+  ): Core.APIListPromise<Account>;
+  list(
+    query?: AccountListParams | Core.RequestOptions | null | undefined,
+    options?: Core.RequestOptions,
   ): Core.APIListPromise<Account> {
+    if (Core.isRequestOptions(query)) {
+      options = query;
+      query = null;
+    }
+
     return this.getAPIList('/accounts', { query, ...options });
   }
 }
