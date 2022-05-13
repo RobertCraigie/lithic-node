@@ -25,11 +25,8 @@ export class Accounts extends Core.APIResource {
   /**
    * List account configurations.
    */
-  list(query?: Core.RequestOptions): Core.APIListPromise<Account>;
-  list(
-    query?: AccountListParams | null | undefined,
-    options?: Core.RequestOptions,
-  ): Core.APIListPromise<Account>;
+  list(options?: Core.RequestOptions): Core.APIListPromise<Account>;
+  list(query?: AccountListParams, options?: Core.RequestOptions): Core.APIListPromise<Account>;
   list(
     query?: AccountListParams | Core.RequestOptions | null | undefined,
     options?: Core.RequestOptions,

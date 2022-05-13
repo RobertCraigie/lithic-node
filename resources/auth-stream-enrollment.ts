@@ -21,11 +21,8 @@ export class AuthStreamEnrollmentResource extends Core.APIResource {
   /**
    * Authorization Stream Access (ASA) provides the ability to make custom transaction approval decisions through an HTTP interface to the ISO 8583 message stream. ASA requests are delivered as an HTTP POST during authorization. The ASA request body adheres to the Lithic transaction schema, with some additional fields added for use in decisioning. A response should be sent with HTTP response code 200 and the approval decision in the response body. This response is converted by Lithic back into ISO 8583 format and forwarded to the network. In Sandbox, users can self-enroll and disenroll in ASA. In production, onboarding requires manual approval and setup.
    */
-  enroll(body?: Core.RequestOptions): Promise<void>;
-  enroll(
-    body?: AuthStreamEnrollmentEnrollParams | null | undefined,
-    options?: Core.RequestOptions,
-  ): Promise<void>;
+  enroll(options?: Core.RequestOptions): Promise<void>;
+  enroll(body?: AuthStreamEnrollmentEnrollParams, options?: Core.RequestOptions): Promise<void>;
   enroll(
     body?: AuthStreamEnrollmentEnrollParams | Core.RequestOptions | null | undefined,
     options?: Core.RequestOptions,

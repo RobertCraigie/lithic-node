@@ -15,11 +15,8 @@ export class Transactions extends Core.APIResource {
   /**
    * List transactions.
    */
-  list(query?: Core.RequestOptions): Core.APIListPromise<Transaction>;
-  list(
-    query?: TransactionListParams | null | undefined,
-    options?: Core.RequestOptions,
-  ): Core.APIListPromise<Transaction>;
+  list(options?: Core.RequestOptions): Core.APIListPromise<Transaction>;
+  list(query?: TransactionListParams, options?: Core.RequestOptions): Core.APIListPromise<Transaction>;
   list(
     query?: TransactionListParams | Core.RequestOptions | null | undefined,
     options?: Core.RequestOptions,

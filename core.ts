@@ -331,7 +331,7 @@ export const isRequestOptions = (obj: unknown): obj is RequestOptions => {
   return (
     typeof obj === 'object' &&
     obj !== null &&
-    Object.keys(RequestOptionsKeys).some((k) => Object.hasOwn(obj, k))
+    Object.keys(obj).every((k) => Object.hasOwn(RequestOptionsKeys, k))
   );
 };
 
