@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Lithic from '../../index';
-const client = new Lithic('something1234', { baseURL: 'http://127.0.0.1:4010' });
+const client = new Lithic({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
 
 describe('resource account_holders', () => {
   test('create: only required params', async () => {
@@ -286,8 +286,10 @@ describe('resource account_holders', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.accountHolders.retrieve('2861f732-eae8-41a7-9875-d02311730c4e', { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.accountHolders.retrieve('2861f732-eae8-41a7-9875-d02311730c4e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('create_webhook: only required params', async () => {
@@ -305,8 +307,10 @@ describe('resource account_holders', () => {
   test('list_documents: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.accountHolders.listDocuments('f755c1c9-3379-4b46-a39f-baadf0e40861', { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.accountHolders.listDocuments('f755c1c9-3379-4b46-a39f-baadf0e40861', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('resubmit: only required params', async () => {
@@ -368,9 +372,9 @@ describe('resource account_holders', () => {
       client.accountHolders.retrieveDocument(
         'db5ff6ad-b57e-412f-bad1-d21d9408b109',
         '1535ea55-8b9a-43f9-8a34-16e70e790fe8',
-        { method: 'FOO' as any },
+        { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(Lithic.BadRequestError);
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('upload_document: only required params', async () => {

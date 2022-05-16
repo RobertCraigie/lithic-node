@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Lithic from '../../index';
-const client = new Lithic('something1234', { baseURL: 'http://127.0.0.1:4010' });
+const client = new Lithic({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
 
 describe('resource cards', () => {
   test('create: only required params', async () => {
@@ -46,8 +46,8 @@ describe('resource cards', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.cards.retrieve('abcac72d-fe3b-4949-9f7a-f9b8dc71103f', { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.cards.retrieve('abcac72d-fe3b-4949-9f7a-f9b8dc71103f', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('update: only required params', async () => {
@@ -83,7 +83,9 @@ describe('resource cards', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.cards.list({ method: 'FOO' as any })).rejects.toThrow(Lithic.BadRequestError);
+    await expect(client.cards.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Lithic.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -97,9 +99,9 @@ describe('resource cards', () => {
           page: 16,
           page_size: 755,
         },
-        { method: 'FOO' as any },
+        { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(Lithic.BadRequestError);
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('embed: only required params', async () => {
@@ -112,14 +114,19 @@ describe('resource cards', () => {
 
   test('embed: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.cards.embed({ method: 'FOO' as any })).rejects.toThrow(Lithic.BadRequestError);
+    await expect(client.cards.embed({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Lithic.NotFoundError,
+    );
   });
 
   test('embed: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.cards.embed({ embed_request: 'oneuxaf', hmac: 'qaylfzfiwvv' }, { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.cards.embed(
+        { embed_request: 'oneuxaf', hmac: 'qaylfzfiwvv' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('provision: only required params', async () => {

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Lithic from '../../index';
-const client = new Lithic('something1234', { baseURL: 'http://127.0.0.1:4010' });
+const client = new Lithic({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
 
 describe('resource accounts', () => {
   test('retrieve', async () => {
@@ -11,8 +11,8 @@ describe('resource accounts', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.accounts.retrieve('bb463b8b-b76c-4f6a-9726-65ab5730b69b', { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.accounts.retrieve('bb463b8b-b76c-4f6a-9726-65ab5730b69b', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('update: only required params', async () => {
@@ -51,7 +51,9 @@ describe('resource accounts', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.accounts.list({ method: 'FOO' as any })).rejects.toThrow(Lithic.BadRequestError);
+    await expect(client.accounts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Lithic.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -59,8 +61,8 @@ describe('resource accounts', () => {
     await expect(
       client.accounts.list(
         { begin: '2019-12-27T18:11:19.117Z', end: '2019-12-27T18:11:19.117Z', page: 14, page_size: 269 },
-        { method: 'FOO' as any },
+        { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(Lithic.BadRequestError);
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 });

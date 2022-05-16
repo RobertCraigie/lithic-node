@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Lithic from '../../index';
-const client = new Lithic('something1234', { baseURL: 'http://127.0.0.1:4010' });
+const client = new Lithic({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
 
 describe('resource auth_rules', () => {
   test('create: only required params', async () => {
@@ -28,8 +28,8 @@ describe('resource auth_rules', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.authRules.retrieve('4b426920-f017-4ad7-a645-fd94101e9dc4', { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.authRules.retrieve('4b426920-f017-4ad7-a645-fd94101e9dc4', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('update: only required params', async () => {
@@ -56,14 +56,16 @@ describe('resource auth_rules', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.authRules.list({ method: 'FOO' as any })).rejects.toThrow(Lithic.BadRequestError);
+    await expect(client.authRules.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Lithic.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.authRules.list({ page: 5, page_size: 913 }, { method: 'FOO' as any }),
-    ).rejects.toThrow(Lithic.BadRequestError);
+      client.authRules.list({ page: 5, page_size: 913 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Lithic.NotFoundError);
   });
 
   test('apply: only required params', async () => {

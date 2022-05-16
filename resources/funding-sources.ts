@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import * as Core from '../core';
+import { isRequestOptions } from '../core';
 import * as Shared from './shared';
 
 export class FundingSources extends Core.APIResource {
@@ -28,13 +29,13 @@ export class FundingSources extends Core.APIResource {
   /**
    * List all the funding sources associated with the Lithic account.
    */
-  list(options?: Core.RequestOptions): Core.APIListPromise<FundingSource>;
   list(query?: FundingSourceListParams, options?: Core.RequestOptions): Core.APIListPromise<FundingSource>;
+  list(options?: Core.RequestOptions): Core.APIListPromise<FundingSource>;
   list(
     query?: FundingSourceListParams | Core.RequestOptions | null | undefined,
     options?: Core.RequestOptions,
   ): Core.APIListPromise<FundingSource> {
-    if (Core.isRequestOptions(query)) {
+    if (isRequestOptions(query)) {
       options = query;
       query = null;
     }
