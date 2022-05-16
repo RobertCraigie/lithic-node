@@ -312,6 +312,7 @@ export class APIResource {
 type HTTPMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 export type Headers = Record<string, string>;
+export type KeysEnum<T> = { [P in keyof Required<T>]: true };
 
 export type RequestOptions<Req extends {} = Record<string, unknown>> = {
   method?: HTTPMethod;
