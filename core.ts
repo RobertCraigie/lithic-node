@@ -7,7 +7,6 @@ import type { RequestInfo, RequestInit, Response } from 'node-fetch';
 import type KeepAliveAgent from 'agentkeepalive';
 import { AbortController, AbortSignal } from 'abort-controller';
 
-import { KeysEnum } from './lib/ts-util';
 import { makeAutoPaginationMethods, AutoPaginationMethods } from './pagination';
 
 const isNode = typeof process !== 'undefined';
